@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>week7-e-p3</title>
+
+	<style type="text/css">
+
+		#container {margin:  0px auto; width: 600px; flex-direction: column; flex-wrap: wrap; display: flex; align-items: center; justify-content: center; border: none;
+		}
+
+		.div1{
+			width: 70%; padding: 10px 0px; box-sizing: border-box; border: none; text-align: center;
+		}
+
+		.div2{
+			width: 100%; text-align: center; padding: 10px 0px; box-sizing: border-box; border: none;
+		}
+	
+
+	</style>
+</head>
+<body>
+
+<div id="container">
+
+<div class="div1">Fullname</div>
+<div><input type="text" maxlength="30" ></div>
+
+
+<div class="div1">Email</div>
+<div><input type="set to email"></div>
+
+<div class="div1">Date you can start</div>
+<div><input type="date"></div>
+
+<div class="div1">Morning shift preference</div>
+<div><input type="time"></div>
+
+
+<div class="div1">Evening shift perference</div>
+<div><input type="time"></div>
+
+
+<div class="div1" >How many hours you can work? In multiple of 3</div>
+<div><input type="number" id="points" name="points" step="3" min="3" max="9"></div>
+
+
+<div class="div1" >Distance you willing to commute to volunteer center?</div>
+<div><label for="Distance you willing to commute to volunteer center?">1</label><input class="div1" type="range" value="3" min="1" max="15"><label for="Distance you willing to commute to volunteer center?">15</label></div>
+
+
+<div class="div1">You currency perference for payment?</div>
+<div><input type="radio" name="currency" id="pound">
+<label for="pounds">&pound;</label>
+<input type="radio" name="male" id="yen">
+<label for="yen">&yen;</label>
+<input type="radio" name="male" id="euro">
+<label for="euro">&euro;</label></div>
+
+
+
+<div class="div2" colspan="2"><center><textarea id="address" name="address" rows="6" cols="40" placeholder="type your house address"></textarea></center>
+</div>
+
+
+
+<div class="div2" colspan="2"><strike><center>You will be given daily meals </strike></center></div>
+
+
+
+<div class="div2" colspan="2"><center><input type="checkbox" checked disabled>I agree to all terms and conditions </center></div>
+
+
+<div class="div2" colspan="2"><center>Prove you are not robot: 10 &lt; 20? <input type="checkbox"></center></div>
+
+
+<div class="div2" colspan="2"><center><button>Volunteer now!</button></center></div>
+
+
+<div class="div2" colspan="2"><center><button>Start over</button></center></div>
+
+<div class="div2" colspan="2"><center>For more informaton, visit MOH <a href="https://www.moh.gov.bn/Pages/Home.aspx" target="_blank">website</a></center></div>
+
+
+</div>
+</body>
+</html>
