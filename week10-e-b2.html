@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>week10-e-b-s</title>
+    <style>
+    #myform{display: grid; width: 70%;margin: 0 auto;grid-template-columns:1fr 1fr 1fr;grid-auto-rows: 3em;}
+    input[type="number"]{height: 1.5em;width: 4em}
+
+
+        /*no additional css is required*/
+
+  </style>
+</head>
+<!-- do not insert additional id attributes to any element -->
+<!-- do not remove any inline styles -->
+<body>
+<body>
+<form action="">
+<div id="myform">
+<h3 style="grid-column: 1/span 3;">Enrichment Points Calculator</h3>
+
+
+<span>Level</span>
+<div>
+  <select name="level" id="level" onchange="showChoices()">
+  <option value="0">select</option>
+  <option value="international">international</option>
+  <option value="national">national</option>
+</select>
+</div>
+<span><button class="hideall" id="reload" onclick="showChoices()">Reset form</button></span>
+
+<span></span><span></span>
+<span class="hideall"># of participation</span>
+
+
+<span class="hide1 hideall">Achievement for International</span>
+<div class="hide1  hideall">
+<select name="international" id="international" onchange="reParticipate()">
+  <option value="0">select</option>
+  <option value="won trophy">won trophy</option>
+    <option value="participation">participation</option>
+</select>
+</div>
+<input type="number" id="internationalfrequency" min="0" max="5" class="hide1  hideall" value="0">
+
+<span class="hide2  hideall">National Level - Choose type</span>
+<div style="grid-column: 2/4;" class="hide2  hideall">
+<select name="types" id="types" onchange= "showActivities()">
+  <option value="0">select</option>
+  <option value="club activities">club activities</option>
+    <option value="local events">local event</option>
+      <option value="both">both</option>
+</select>
+</div>
+
+
+<span class="hide21  hideall">club activities your role</span>
+<div class="hide21  hideall">
+<select name="clubactivities" id="clubactivities" onchange="reClub()">
+  <option value="0">select</option>
+  <option value="president">president</option>
+    <option value="secretary">secretary</option>
+      <option value="member">member</option>
+</select>
+</div>
+<input type="number" id="cafrequency" min="0" max="10" value="0" class="hide21  hideall">
+
+
+<span class="hide22  hideall">Local event role</span>
+<div class="hide22  hideall">
+<select name="localevents" id="localevents" onchange="reLocalEv()">
+  <option value="0">select</option>
+  <option value="organizer">organizer</option>
+    <option value="participant">participant</option>
+</select>
+</div>
+<input type="number" id="lefrequency" min="0" max="10" value="0" class="hide22  hideall">
+
+<span class="hideall">You are in semester</span>
+<div style="grid-column:2/span 2" class="hideall">
+  <select name="semester" id="semester" onchange="calculatePoints()">
+  <option value="0">select</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+</select>
+</div>
+<div id="epstatus" style="grid-column:1/span 3">
+
+</div>
+
+</form>
+
+<script>
+   //write all the required functions here
+ //indentation is important
+ //also neatness
+
+// repitition is not in the syllabus. but students may use loop since  they learnt this concept in ITP
+//  you are expected to use since covered in the classes:
+// function with parameters
+// getElementsByName
+// getElementsById
+
+// additionally
+// getElementsByClassName
+
+//------------Resets Level selection-------------------
+  document.getElementById("level").selectedIndex = 0;
+
+//------------Hides all elements-------------
+var hide =  document.getElementsByClassName("hideall");
+
+  for(var i = 0; i < hide.length; i++) {
+    hide[i].style.display = "none";
+  }
+
+//-----------Main function starts--------------------
+
+function showChoices() {
+var level = document.getElementById("level").value;
+var show = document.getElementsByClassName("hide1");
+var show2 = document.getElementsByClassName("hide2");
+
+//------------Hides all elements-------------
+  for(var i = 0; i < hide.length; i++) {
+    hide[i].style.display = "none";
+  }
+
+//---------------INTERNATIONAL----------------------
+//------------Shows International's elements----------
+  if (level == "international") {
+    for(var i = 0; i < show.length; i++) {
+    show[i].style.display = "block";
+    }
+
+//--------Reset input forms, show reload button----------------
+  document.getElementById("international").selectedIndex = 0;
+  document.getElementById("internationalfrequency").value = 0;
+  document.getElementById("reload").style.display = "block";
+//--------Reset Semester and EP status---------------
+  document.getElementById("semester").selectedIndex = 0;
+  document.getElementById("epstatus").innerHTML = "";
+//--------Make Reload button & semester visible----------
+  hide[1].style.display = "block"; //#no of participation text
+  hide[13].style.display = "block"; //You are in semester text
+  hide[14].style.display = "block"; //semester select
+  }
+
+//---------------NATIONAL-------------------------
+//------------Shows National's elements---------- 
+  else if (level == "national") {
+   
+   for(var i = 0; i < show2.length; i++) {
+    show2[i].style.display = "block";
+    }
+
+//--------Reset input forms----------------
+  document.getElementById("types").selectedIndex = 0;
+  document.getElementById("reload").style.display = "block";
+//--------Reset Semester and EP status---------------
+  document.getElementById("semester").selectedIndex = 0;
+  document.getElementById("epstatus").innerHTML = "";
+//--------Make Reload button & semester visible----------
+  hide[1].style.display = "block"; //#no of participation text
+  hide[13].style.display = "block"; //You are in semester text
+  hide[14].style.display = "block"; //semester select
+  }
+}  
+
+//-------------Reset international inputs-------------
+function reParticipate() {
+  document.getElementById("internationalfrequency").value = 0;
+  document.getElementById("semester").selectedIndex = 0;
+  document.getElementById("epstatus").innerHTML = "";
+}
+
+//-------------> National > Activities----------------
+function showActivities() {
+  var activity2 = document.getElementById("types").value;
+  var clubs = document.getElementsByClassName("hide21");
+  var localEvent = document.getElementsByClassName("hide22");
+
+//--------Reset Activities Input forms----------------
+  document.getElementById("cafrequency").value = 0;
+  document.getElementById("lefrequency").value = 0;
+  document.getElementById("clubactivities").selectedIndex = 0;
+  document.getElementById("localevents").selectedIndex = 0;
+
+//--------Reset Semester and EP status---------------
+  document.getElementById("semester").selectedIndex = 0;
+  document.getElementById("epstatus").innerHTML = "";
+   
+//-----------Show Club Activities-------------
+  if (activity2 == "club activities") {
+    for(var i = 0; i < clubs.length; i++) {
+    clubs[i].style.display = "block";
+    }
+
+    for(var i = 0; i < clubs.length; i++) {
+    localEvent[i].style.display = "none";
+    }
+  }
+
+//-----------Show Local Events-------------
+  else if (activity2 == "local events") {
+    for(var i = 0; i < localEvent.length; i++) {
+    localEvent[i].style.display = "block";
+    }
+
+    for(var i = 0; i < clubs.length; i++) {
+    clubs[i].style.display = "none";
+    }
+  }
+//-----------Show Both--------------------
+  else if (activity2 == "both") {
+
+    for(var i = 0; i < clubs.length; i++) {
+    clubs[i].style.display = "block";
+    }
+
+    for(var i = 0; i < localEvent.length; i++) {
+    localEvent[i].style.display = "block";
+    }
+  }
+}
+
+//-------------Reset club inputs-------------
+function reClub() {
+  document.getElementById("cafrequency").value = 0;
+  document.getElementById("semester").selectedIndex = 0;
+  document.getElementById("epstatus").innerHTML = "";
+}
+
+//-------------Reset local events inputs-------------
+function reLocalEv() {
+  document.getElementById("lefrequency").value = 0;
+  document.getElementById("semester").selectedIndex = 0;
+  document.getElementById("epstatus").innerHTML = "";
+}
+
+function calculatePoints() {
+//----------Declare Variables---------------
+var participation = parseInt(document.getElementById("internationalfrequency").value);
+var participation2 = parseInt(document.getElementById("cafrequency").value);
+var participation3 = parseInt(document.getElementById("lefrequency").value);
+var semester = parseInt(document.getElementById("semester").value);
+var chooseResults = document.getElementById("level").value;
+var activity1 = document.getElementById("international").value;
+var activity2 = document.getElementById("clubactivities").value;
+var activity3 = document.getElementById("localevents").value;
+var showResult = document.getElementById("epstatus");
+
+
+var result1;
+var result2;
+var points = 0;
+var caPoints = 0;
+var lePoints = 0;
+var result = 0;
+
+//-----------International activity-----------
+  if (activity1 == "won trophy") {
+    points = 45;
+  } 
+  else if (activity1 == "participation") {
+    points = 25;
+  }
+
+//-----------National > Club activity > Role----------
+  if (activity2 == "president") {
+    caPoints = 15;
+  }
+  else if (activity2 == "secretary") {
+    caPoints = 10;
+  }
+  else if (activity2 == "member") {
+    caPoints = 5;
+  }
+
+//-----------National > Local Events > Role----------
+  if (activity3 == "organizer") {
+    lePoints = 8;
+  }
+  else if (activity3 == "participant") {
+    lePoints = 3;
+  }
+
+//----------Show EP results based on level-----------
+  if (chooseResults == "international") {
+    result1 = points * participation;
+    showResult.innerHTML = "EP: " + result1;
+  }
+  
+  else if (chooseResults == "national") {
+    result2 =  (caPoints * participation2) + (lePoints * participation3);
+    showResult.innerHTML = "EP: " + result2;
+  }
+
+//----------Semester output----------------
+  if (semester <= 3) {
+
+    if (result1 <=32 || result2 <= 32) {
+    showResult.innerHTML += "<br>" + "You need to participate more!";
+    } else {
+    showResult.innerHTML += "<br>" + "Good job!";
+    }
+  }
+
+  else if (semester <= 5 ) {
+    if (result1 <=32 || result2 <= 32) {
+    showResult.innerHTML += "<br>" + "You need to be more active than before!";
+    } else {
+    showResult.innerHTML += "<br>" + "Well done!";
+    }
+  }
+
+
+  else if (semester == 6) {
+    if (result1 <=32 || result2 <= 32) {
+    showResult.innerHTML += "<br>" + "Please contact CSDI asap";
+    } else {
+      showResult.innerHTML += "<br>" + "Reminder: You need 64 points to graduate";
+    }
+  }
+}
+
+
+</script>
+</body>
+</html>
